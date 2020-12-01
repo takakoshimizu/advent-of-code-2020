@@ -2,7 +2,7 @@ defmodule Advent2020.Day1 do
   @sum_target 2020
 
   def main do
-    nums = Enum.map(String.split(File.read!("input.txt"), "\n"), &String.to_integer/1)
+    nums = Enum.map(String.split(File.read!("./lib/day-1/input.txt"), "\n"), &String.to_integer/1)
     IO.puts("Passcode is #{nums |> sum_set |> product}.")
     IO.puts("Second passcode is #{nums |> sum_set(3) |> product}.")
   end
@@ -13,5 +13,3 @@ defmodule Advent2020.Day1 do
   defp sums_to?(n, list, num_matches) when num_matches > 1, do: Enum.any?(list, &(sums_to?(&1 + n, list, num_matches - 1)))
   defp product(ns), do: Enum.reduce(ns, &*/2)
 end
-
-Advent2020.Day1.main()

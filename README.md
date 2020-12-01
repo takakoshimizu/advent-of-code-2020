@@ -10,17 +10,15 @@ super-kata thing to warm up for the day. They...frequently get out of hand quick
 You must [install Elixir](https://elixir-lang.org/install.html) to your machine. 
 At time of writing, I am using Elixir 1.10.4 on Erlang/OTP 23.
 
+Run `mix deps.get` to install any dependencies for later days.
+
 ## Running a day's code.
-Currently, each day is written as a simple `.exs` script file. This means, to run the code,
-all one needs to do is run `elixir [filename]` and get the output to their terminal. Each day
-will have any needed input alongside it.
+Each day is written as a separate context folder and a corresponding `mix` task. To execute a day's puzzle,
+simply call the proper `mix` task.
 
 IE: 
 ```bash
-➜  day-1 git:(trunk) ✗ elixir day1.exs
+➜ advent-of-code-2020 git:(trunk) ✗ mix day1
 Passcode is 259716.
 Second passcode is 120637440.
 ```
-
-Later days may very well begin to use `mix` dependencies, and the README will be updated
-accordingly if that occurs.
