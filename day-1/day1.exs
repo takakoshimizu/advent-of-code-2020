@@ -7,9 +7,8 @@ defmodule Advent2020.Day1 do
     IO.puts("Second passcode is #{nums |> sum_set(3) |> product}.")
   end
 
-  defp sums_to?(n, list, num_matches) do
+  defp sums_to?(n, list, num_matches) when num_matches > 0 do
     case num_matches do
-      0 -> false
       1 -> n === @sum_target
       _ -> Enum.any?(list, &(sums_to?(&1 + n, list, num_matches - 1)))
     end
