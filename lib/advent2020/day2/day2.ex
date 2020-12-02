@@ -6,7 +6,7 @@ defmodule Advent2020.Day2 do
     valid_passwords = passwords |> Enum.map(&Advent2020.Day2.Password.valid?/1) |> Enum.filter(fn {part1, part2} -> part1 or part2 end)
 
     part1 = valid_passwords |> Enum.filter(fn {part1, _part2} -> part1 end) |> length
-    part2 = valid_passwords |> Enum.filter(fn {_part1, part2} -> part2 end) |> length()
+    part2 = valid_passwords |> Enum.filter(fn {_part1, part2} -> part2 end) |> length
     answer Advent2020.Answer.new(part1, part2)
   end
 
@@ -23,7 +23,7 @@ defmodule Advent2020.Day2 do
       range = Range.new(start, stop)
       letters = String.split(password, "", trim: true)
       { length(Enum.filter(letters, &(&1 == letter))) in range,
-        xor(valid_letter?(password, letter, start), valid_letter?(password, letter, stop))}
+        xor(valid_letter?(password, letter, start), valid_letter?(password, letter, stop)) }
     end
 
     defp valid_letter?(password, letter, ix), do: String.at(password, ix - 1) === letter
