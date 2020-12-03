@@ -2,8 +2,11 @@ defmodule Advent2020.Day3 do
   use Advent2020.Utils
 
   def main(input) do
+    concurrency = System.schedulers_online() * 2
     results = [{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}]
-      |> Enum.map(fn strat -> traverse_map(input, strat) end)
+      |> Task.async_stream(fn strat -> traverse_map(input, strat) end, max_concurrency: concurrency, ordered: false)
+      |> Enum.to_list
+      |> Enum.map(fn {_status, count} -> count end)
     part1 = Enum.at(results, 1)
     part2 = Enum.reduce(results, &*/2)
     answer Advent2020.Answer.new(part1, part2)
